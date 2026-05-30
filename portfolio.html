@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SS Software Solutions — Freelance web development agency. Expert frontend & backend engineering for startups and businesses." />
+  <meta name="keywords" content="freelance web development, frontend developer, backend developer, software agency, web design, API development" />
+  <meta property="og:title" content="SS Software Solutions" />
+  <meta property="og:description" content="We build fast, beautiful, scalable web products." />
+  <meta property="og:type" content="website" />
+  <title>SS Software Solutions</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #222222;
+      --accent: #c8f135;
+      --accent2: #3bf0c0;
+      --text: #f0ede6;
+      --muted: #888884;
+      --danger: #ff5a5a;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Mono', monospace;
+      --font-serif: 'Instrument Serif', serif;
+      --max: 1180px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+    }
+
+    /* ── CURSOR ── */
+    .cursor {
+      position: fixed; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s, width 0.2s var(--ease), height 0.2s var(--ease), opacity 0.2s;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--accent); pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      border-color: var(--border);
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span {
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #0a0a0a !important;
+      padding: 8px 20px;
+      border-radius: 2px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: #d9ff45 !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(200,241,53,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,241,53,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      width: fit-content;
+      animation: fadeUp 0.8s var(--ease) both;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(52px, 9vw, 130px);
+      line-height: 0.92;
+      letter-spacing: -3px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s 0.1s var(--ease) both;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+      animation: fadeUp 0.8s 0.2s var(--ease) both;
+    }
+    .hero-desc {
+      max-width: 400px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .hero-stats {
+      display: flex; gap: 48px; flex-shrink: 0;
+    }
+    .stat { text-align: right; }
+    .stat-num {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 1;
+      color: var(--text);
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .hero-scroll {
+      position: absolute;
+      right: 40px; bottom: 60px;
+      writing-mode: vertical-lr;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 12px;
+      animation: fadeUp 0.8s 0.4s var(--ease) both;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 40px;
+      display: inline-flex; align-items: center; gap: 16px;
+    }
+    .marquee-item::after {
+      content: '✦';
+      color: var(--accent);
+      font-size: 10px;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; z-index: 1; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 40px; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 64px);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 64px;
+    }
+    .section-title em {
+      font-style: italic;
+      font-family: var(--font-serif);
+      color: var(--muted);
+    }
+
+    /* ── SERVICES ── */
+    #services { padding: 120px 0; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .service-card {
+      background: var(--surface);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { background: var(--surface2); }
+    .service-num {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .service-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+    .service-desc { color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 28px;
+    }
+    .tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* ── TEAM ── */
+    #team { padding: 120px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .team-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+    .team-card {
+      background: var(--bg);
+      padding: 60px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::after {
+      content: attr(data-role);
+      position: absolute; bottom: -20px; right: -10px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 80px;
+      color: rgba(200,241,53,0.04);
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .team-role-pill {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .team-name {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .team-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .team-bio { color: var(--muted); font-size: 13px; line-height: 1.9; margin-bottom: 32px; max-width: 380px; }
+    .team-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip {
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      border-radius: 100px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .team-card:hover .skill-chip { border-color: var(--accent); color: var(--accent); }
+
+    /* ── PROCESS ── */
+    #process { padding: 120px 0; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--border);
+    }
+    .process-step {
+      padding: 48px 32px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .process-step:last-child { border-right: none; }
+    .process-step-num {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 56px;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color 0.3s;
+    }
+    .process-step:hover .process-step-num { color: var(--accent); }
+    .process-step-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .process-step-desc { color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+    /* ── PORTFOLIO ── */
+    #work { padding: 120px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+    .work-card {
+      background: var(--bg);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .work-card.featured { grid-column: 1 / -1; }
+    .work-card:hover { background: var(--surface2); }
+    .work-card-type {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .work-card-type::before {
+      content: ''; width: 16px; height: 1px; background: var(--accent);
+    }
+    .work-card-title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(24px, 3vw, 40px);
+      letter-spacing: -1px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .work-card-desc { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 500px; margin-bottom: 28px; }
+    .work-card-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .work-arrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+    .work-card:hover .work-arrow { gap: 16px; }
+    .work-visual {
+      position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+      width: 120px; height: 120px;
+      opacity: 0.08;
+      font-size: 100px;
+      line-height: 1;
+    }
+
+    /* ── PRICING ── */
+    #pricing { padding: 120px 0; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .pricing-card {
+      background: var(--surface);
+      padding: 48px 36px;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .pricing-card.popular {
+      background: var(--surface2);
+    }
+    .popular-badge {
+      position: absolute; top: -1px; right: 24px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 12px;
+    }
+    .price-tier {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .price-amount {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 52px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-amount sup { font-size: 20px; vertical-align: super; }
+    .price-period { color: var(--muted); font-size: 12px; margin-bottom: 32px; }
+    .price-features { list-style: none; margin-bottom: 36px; }
+    .price-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .price-features li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+    .price-features li.included { color: var(--text); }
+    .btn {
+      display: block; width: 100%; padding: 14px;
+      text-align: center; font-family: var(--font-head);
+      font-weight: 700; font-size: 13px; letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid var(--border); color: var(--text);
+      background: transparent;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary {
+      background: var(--accent); color: #0a0a0a; border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #d9ff45; border-color: #d9ff45; color: #0a0a0a; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 120px 0; background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-tagline {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(40px, 5vw, 72px);
+      letter-spacing: -2.5px;
+      line-height: 0.95;
+      margin-bottom: 32px;
+    }
+    .contact-tagline em {
+      font-style: italic;
+      font-family: var(--font-serif);
+      color: var(--accent);
+    }
+    .contact-info { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      color: var(--muted); font-size: 13px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-item:hover { color: var(--accent); }
+    .contact-item-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover .contact-item-icon { border-color: var(--accent); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit {
+      background: var(--accent); color: #0a0a0a;
+      font-family: var(--font-head); font-weight: 800;
+      font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+      border: none; padding: 18px;
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .form-submit:hover { background: #d9ff45; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 60px 40px 32px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 40px;
+    }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px;
+    }
+    .footer-brand {
+      font-family: var(--font-head);
+      font-weight: 800; font-size: 22px; letter-spacing: -0.5px;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tagline { color: var(--muted); font-size: 12px; margin-top: 8px; max-width: 280px; }
+    .footer-links-col h4 {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .footer-links-col a {
+      display: block; color: var(--muted); text-decoration: none;
+      font-size: 13px; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-links-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 12px;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: var(--bg);
+      flex-direction: column; justify-content: center; align-items: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 36px; letter-spacing: -1px;
+      color: var(--text); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      #hero { padding: 0 24px 48px; }
+      .hero-sub { flex-direction: column; align-items: flex-start; }
+      .hero-stats { flex-direction: row; gap: 32px; }
+      .stat { text-align: left; }
+      .hero-scroll { display: none; }
+      .container { padding: 0 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-layout { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card.featured { grid-column: auto; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      #hero { min-height: 90vh; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobileMenu()">Services</a>
+  <a href="#team" onclick="closeMobileMenu()">Team</a>
+  <a href="#work" onclick="closeMobileMenu()">Work</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#"><span>SS</span> Software Solutions</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-badge">Available for projects · 2025</div>
+
+  <h1 class="hero-h1">
+    We build<br />
+    <em>software</em><br />
+    that works.
+  </h1>
+
+  <div class="hero-sub">
+    <p class="hero-desc">
+      SS Software Solutions is a two-person agency crafting high-performance web products — from pixel-perfect interfaces to rock-solid backends. Full-stack expertise, boutique attention.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">95<span>%</span></div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2<span>x</span></div>
+        <div class="stat-label">Faster delivery</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">React</span>
+    <span class="marquee-item">Node.js</span>
+    <span class="marquee-item">TypeScript</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">REST APIs</span>
+    <span class="marquee-item">Tailwind CSS</span>
+    <span class="marquee-item">MongoDB</span>
+    <span class="marquee-item">React</span>
+    <span class="marquee-item">Node.js</span>
+    <span class="marquee-item">TypeScript</span>
+    <span class="marquee-item">PostgreSQL</span>
+    <span class="marquee-item">REST APIs</span>
+    <span class="marquee-item">Tailwind CSS</span>
+    <span class="marquee-item">MongoDB</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">Services <em>built<br />for growth</em></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <span class="service-icon">⬡</span>
+        <div class="service-name">Frontend Development</div>
+        <p class="service-desc">Responsive, accessible, and visually sharp interfaces. We turn designs into fast, interactive web experiences that users actually enjoy.</p>
+        <div class="service-tags">
+          <span class="tag">React</span>
+          <span class="tag">HTML</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">CSS/Tailwind</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <span class="service-icon">⬢</span>
+        <div class="service-name">Backend Engineering</div>
+        <p class="service-desc">Scalable server-side systems, APIs, and databases. Reliable architecture that handles real-world traffic without breaking a sweat.</p>
+        <div class="service-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">SQL</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <span class="service-icon">◈</span>
+        <div class="service-name">Full-Stack Products</div>
+        <p class="service-desc">End-to-end web applications — from DB schema to UI polish. One team, full ownership, zero handoff friction.</p>
+        <div class="service-tags">
+          <span class="tag">SaaS</span>
+          <span class="tag">Dashboards</span>
+          <span class="tag">MVPs</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <span class="service-icon">⟡</span>
+        <div class="service-name">API Design & Integration</div>
+        <p class="service-desc">RESTful and GraphQL APIs built for developers. Third-party integrations including payments, auth, notifications, and analytics.</p>
+        <div class="service-tags">
+          <span class="tag">REST</span>
+          <span class="tag">GraphQL</span>
+          <span class="tag">Auth</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <span class="service-icon">◻</span>
+        <div class="service-name">Performance & Optimization</div>
+        <p class="service-desc">Audit and optimize existing apps for speed, SEO, and Core Web Vitals. Slow sites cost revenue — we fix them fast.</p>
+        <div class="service-tags">
+          <span class="tag">Lighthouse</span>
+          <span class="tag">SEO</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <span class="service-icon">⊕</span>
+        <div class="service-name">Cloud Deployment</div>
+        <p class="service-desc"> We get your app live and keep it that way.</p>
+        <div class="service-tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Render</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-label reveal">The People</div>
+    <h2 class="section-title reveal">Small team,<br /><em>big output</em></h2>
+    <div class="team-layout reveal">
+      <div class="team-card" data-role="FRONT">
+        <div class="team-role-pill">Frontend Developer</div>
+        <div class="team-name">Sucharita Kumar</div>
+        <div class="team-title">Interface Architect</div>
+        <p class="team-bio">Obsessed with the details that separate good from great. Turns complex requirements into clean, maintainable React codebases with an eye for interaction design and performance.</p>
+        <div class="team-skills">
+          <span class="skill-chip">React</span>
+          <span class="skill-chip">TypeScript</span>
+          <span class="skill-chip">CSS / Tailwind</span>
+          <span class="skill-chip">Figma</span>
+          <span class="skill-chip">Animation</span>
+          <span class="skill-chip">Accessibility</span>
+        </div>
+      </div>
+      <div class="team-card" data-role="BACK">
+        <div class="team-role-pill">Backend Developer</div>
+        <div class="team-name">Samrat Ghosh</div>
+        <div class="team-title">Systems Engineer</div>
+        <p class="team-bio">Builds the engine under the hood. Designs APIs that scale, databases that don't break, and infrastructure that stays up — even when things get unpredictable.</p>
+        <div class="team-skills">
+          <span class="skill-chip">Node.js</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">PostgreSQL</span>
+          <span class="skill-chip">MongoDB</span>
+          <span class="skill-chip">Docker</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-label reveal">How We Work</div>
+    <h2 class="section-title reveal">Our <em>process</em></h2>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <div class="process-step-title">Discovery Call</div>
+        <p class="process-step-desc">We learn your goals, constraints, and timeline. One call to determine if we're the right fit and to scope the project clearly.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <div class="process-step-title">Proposal & Planning</div>
+        <p class="process-step-desc">You receive a clear proposal with milestones, deliverables, and a fixed timeline. No surprises. No scope creep.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <div class="process-step-title">Build & Review</div>
+        <p class="process-step-desc">Weekly check-ins, a shared progress board, and staged deployments so you see real progress every step of the way.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <div class="process-step-title">Launch & Support</div>
+        <p class="process-step-desc">We deploy, monitor, and provide 30 days of post-launch support. Your product goes live — properly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-label reveal">Selected Work</div>
+    <h2 class="section-title reveal">Projects we're<br /><em>proud of</em></h2>
+    <div class="work-grid">
+      <div class="work-card featured reveal">
+        <div class="work-card-type">AI Integrated Platform</div>
+        <div class="work-card-title">AI Driven Code Optimizer<br />for Cloud Services</div>
+        <p class="work-card-desc">A collaborative project management suite with real-time updates, role-based permissions, and integrated analytics. Built for a 500-user B2B client from scratch in 10 weeks.</p>
+        <div class="work-card-stack">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">LLM Integration</span>
+          <span class="tag">Express.js</span>
+        </div>
+        <div class="work-visual">📋</div>
+      </div>
+      <div class="work-card reveal">
+        <div class="work-card-type">Notification Management</div>
+        <div class="work-card-title">GLOF Sentinel</div>
+        <p class="work-card-desc">Multi-vendor marketplace with Stripe Connect, inventory management, and a mobile-first storefront achieving 98 Lighthouse score.</p>
+        <div class="work-card-stack">
+          <span class="tag">React</span>
+          <span class="tag">Express</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">REST APIs</span>
+        </div>
+      </div>
+      
+      <div class="work-card reveal">
+        <div class="work-card-type">Blockchain</div>
+        <div class="work-card-title">AgroTrace2.5</div>
+        <p class="work-card-desc">Appointment booking, secure medical records, and telehealth features for a regional clinic network. HIPAA-conscious architecture with end-to-end encryption.</p>
+        <div class="work-card-stack">
+          <span class="tag">Cryptographic Ledger</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">React</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label reveal">Investment</div>
+    <h2 class="section-title reveal">Transparent <em>pricing</em></h2>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount"><sup>$</sup>1,500</div>
+        <div class="price-period">per project</div>
+        <ul class="price-features">
+          <li class="included">Landing page / portfolio site</li>
+          <li class="included">Mobile responsive</li>
+          <li class="included">Contact form integration</li>
+          <li class="included">SEO basics</li>
+          <li>Custom backend</li>
+          <li>Database design</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount"><sup>$</sup>5,000</div>
+        <div class="price-period">per project</div>
+        <ul class="price-features">
+          <li class="included">Full-stack web application</li>
+          <li class="included">Custom API development</li>
+          <li class="included">Database design & setup</li>
+          <li class="included">Authentication & roles</li>
+          <li class="included">Admin dashboard</li>
+          <li>Dedicated support plan</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-period">let's talk</div>
+        <ul class="price-features">
+          <li class="included">Everything in Growth</li>
+          <li class="included">Dedicated team sprint</li>
+          <li class="included">CI/CD & DevOps setup</li>
+          <li class="included">Performance optimization</li>
+          <li class="included">30-day post-launch support</li>
+          <li class="included">Priority communication</li>
+        </ul>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div>
+        <div class="section-label reveal">Get In Touch</div>
+        <div class="contact-tagline reveal">
+          Let's build<br />something<br /><em>great.</em>
+        </div>
+        <p class="reveal" style="color:var(--muted);font-size:13px;line-height:1.9;max-width:360px;">
+          We take on a limited number of projects each quarter to ensure quality. Reach out early — if it's a fit, we'll schedule a free discovery call within 24 hours.
+        </p>
+        <div class="contact-info reveal">
+          <a href="mailto:hello@sssoftwaresolutions.dev" class="contact-item">
+            <div class="contact-item-icon">✉</div>
+            hello@sssoftwaresolutions.dev
+          </a>
+          <a href="https://wa.me/1234567890" class="contact-item">
+            <div class="contact-item-icon">✆</div>
+            +1 (234) 567-890
+          </a>
+          <a href="https://github.com/sssoftwaresolutions" class="contact-item" target="_blank" rel="noopener">
+            <div class="contact-item-icon">⌥</div>
+            github.com/sssoftwaresolutions
+          </a>
+          <a href="https://linkedin.com/company/sssoftwaresolutions" class="contact-item" target="_blank" rel="noopener">
+            <div class="contact-item-icon">in</div>
+            linkedin.com/company/sssoftwaresolutions
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option>Frontend Development</option>
+              <option>Backend Engineering</option>
+              <option>Full-Stack Product</option>
+              <option>API Design & Integration</option>
+              <option>Performance Optimization</option>
+              <option>DevOps & Deployment</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Select budget...</option>
+              <option>Under $1,500</option>
+              <option>$1,500 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000+</option>
+              <option>Let's discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Project</label>
+            <textarea id="message" name="message" placeholder="Briefly describe what you're building, your timeline, and any specific requirements..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+          <p id="formMsg" style="display:none;color:var(--accent);font-size:12px;margin-top:8px;"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top" style="max-width:var(--max);margin:0 auto;width:100%;">
+    <div>
+      <div class="footer-brand"><span>SS</span> Software Solutions</div>
+      <p class="footer-tagline">Two developers. Full-stack capability. Built for businesses that need things done right.</p>
+    </div>
+    <div class="footer-links-col">
+      <h4>Services</h4>
+      <a href="#services">Frontend Dev</a>
+      <a href="#services">Backend Engineering</a>
+      <a href="#services">Full-Stack</a>
+      <a href="#services">DevOps</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Company</h4>
+      <a href="#team">Team</a>
+      <a href="#work">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="footer-links-col">
+      <h4>Connect</h4>
+      <a href="mailto:hello@sssoftwaresolutions.dev">Email</a>
+      <a href="https://github.com/sssoftwaresolutions" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/company/sssoftwaresolutions" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/sssoftsolutions" target="_blank" rel="noopener">Twitter</a>
+    </div>
+  </div>
+  <div class="footer-bottom" style="max-width:var(--max);margin:0 auto;width:100%;">
+    <span>© 2025 SS Software Solutions. All rights reserved.</span>
+    <span>Crafted with precision · West Bengal, India</span>
+  </div>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button, .service-card, .work-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      ring.style.width = '56px'; ring.style.height = '56px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px'; cursor.style.height = '10px';
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // ── NAV SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── MOBILE MENU ──
+  const mobileMenu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('hamburger');
+  function toggleMenu() {
+    mobileMenu.classList.toggle('open');
+    const spans = hamburger.querySelectorAll('span');
+    if (mobileMenu.classList.contains('open')) {
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  }
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.07 + 's';
+    observer.observe(el);
+  });
+
+  // ── FORM ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = '✓ Message Sent!';
+      msg.style.display = 'block';
+      msg.textContent = "Thanks! We'll get back to you within 24 hours.";
+      e.target.reset();
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        msg.style.display = 'none';
+      }, 5000);
+    }, 1200);
+  }
+</script>
+</body>
+</html>
