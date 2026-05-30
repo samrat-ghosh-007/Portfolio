@@ -672,6 +672,31 @@
     }
     .mobile-menu a:hover { color: var(--accent); }
 
+    /* ── BRIEF BUILDER ── */
+.bb-step { display: none; flex-direction: column; gap: 16px; animation: bbfade .4s var(--ease) both; }
+.bb-step.active { display: flex; }
+@keyframes bbfade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.bb-opt {
+  background: var(--surface2); border: 1px solid var(--border); padding: 14px 18px;
+  cursor: pointer; font-family: var(--font-body); font-size: 13px; color: var(--muted);
+  transition: all .2s; text-align: left; display: flex; align-items: center; gap: 12px;
+}
+.bb-opt::before { content: '○'; color: var(--border); font-size: 12px; flex-shrink: 0; transition: color .2s; }
+.bb-opt:hover { border-color: var(--accent); color: var(--text); }
+.bb-opt:hover::before { color: var(--accent); }
+.bb-opt.selected { border-color: var(--accent); color: var(--accent); background: rgba(200,241,53,.06); }
+.bb-opt.selected::before { content: '●'; color: var(--accent); }
+.bb-nav-btn {
+  padding: 12px 24px; font-family: var(--font-head); font-weight: 800; font-size: 12px;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  border: 1px solid var(--accent); color: var(--accent); background: transparent; transition: all .2s;
+}
+.bb-nav-btn:hover { background: var(--accent); color: #0a0a0a; }
+.bb-nav-btn.primary { background: var(--accent); color: #0a0a0a; }
+.bb-nav-btn.primary:hover { background: #d9ff45; border-color: #d9ff45; }
+.bb-nav-btn.ghost { border-color: var(--border); color: var(--muted); }
+.bb-nav-btn.ghost:hover { border-color: var(--muted); color: var(--text); background: transparent; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
@@ -720,7 +745,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <!-- <li><a href="#pricing">Pricing</a></li> -->
     <li><a href="#contact" class="nav-cta">Hire Us</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -746,11 +771,11 @@
     </p>
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">30<span>+</span></div>
+        <div class="stat-num">10<span>+</span></div>
         <div class="stat-label">Projects</div>
       </div>
       <div class="stat">
-        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-num">90<span>%</span></div>
         <div class="stat-label">Satisfaction</div>
       </div>
       <div class="stat">
@@ -768,7 +793,7 @@
   <div class="marquee-track">
     <span class="marquee-item">React</span>
     <span class="marquee-item">Node.js</span>
-    <span class="marquee-item">Next.js</span>
+    <!-- <span class="marquee-item">Next.js</span> -->
     <span class="marquee-item">TypeScript</span>
     <span class="marquee-item">PostgreSQL</span>
     <span class="marquee-item">REST APIs</span>
@@ -776,20 +801,20 @@
     <span class="marquee-item">Tailwind CSS</span>
     <span class="marquee-item">MongoDB</span>
     <span class="marquee-item">GraphQL</span>
-    <span class="marquee-item">AWS</span>
-    <span class="marquee-item">Redis</span>
+    <!-- <span class="marquee-item">AWS</span>
+    <span class="marquee-item">Redis</span> -->
     <span class="marquee-item">React</span>
     <span class="marquee-item">Node.js</span>
-    <span class="marquee-item">Next.js</span>
+    <!-- <span class="marquee-item">Next.js</span> -->
     <span class="marquee-item">TypeScript</span>
     <span class="marquee-item">PostgreSQL</span>
     <span class="marquee-item">REST APIs</span>
-    <span class="marquee-item">Docker</span>
+    <!-- <span class="marquee-item">Docker</span> -->
     <span class="marquee-item">Tailwind CSS</span>
     <span class="marquee-item">MongoDB</span>
     <span class="marquee-item">GraphQL</span>
-    <span class="marquee-item">AWS</span>
-    <span class="marquee-item">Redis</span>
+    <!-- <span class="marquee-item">AWS</span>
+    <span class="marquee-item">Redis</span> -->
   </div>
 </div>
 
@@ -806,7 +831,7 @@
         <p class="service-desc">Responsive, accessible, and visually sharp interfaces. We turn designs into fast, interactive web experiences that users actually enjoy.</p>
         <div class="service-tags">
           <span class="tag">React</span>
-          <span class="tag">Next.js</span>
+          <!-- <span class="tag">Next.js</span> -->
           <span class="tag">TypeScript</span>
           <span class="tag">CSS/Tailwind</span>
         </div>
@@ -818,7 +843,7 @@
         <p class="service-desc">Scalable server-side systems, APIs, and databases. Reliable architecture that handles real-world traffic without breaking a sweat.</p>
         <div class="service-tags">
           <span class="tag">Node.js</span>
-          <span class="tag">Python</span>
+          <span class="tag">Express.js</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">MongoDB</span>
         </div>
@@ -842,7 +867,6 @@
         <div class="service-tags">
           <span class="tag">REST</span>
           <span class="tag">GraphQL</span>
-          <span class="tag">Stripe</span>
           <span class="tag">Auth</span>
         </div>
       </div>
@@ -854,17 +878,16 @@
         <div class="service-tags">
           <span class="tag">Lighthouse</span>
           <span class="tag">SEO</span>
-          <span class="tag">Caching</span>
         </div>
       </div>
       <div class="service-card reveal">
         <div class="service-num">06</div>
         <span class="service-icon">⊕</span>
-        <div class="service-name">DevOps & Deployment</div>
-        <p class="service-desc">CI/CD pipelines, containerisation, and cloud deployments. We get your app live and keep it that way.</p>
+        <div class="service-name">Cloud Deployment</div>
+        <p class="service-desc"> We get your app live and keep it that way.</p>
         <div class="service-tags">
           <span class="tag">Docker</span>
-          <span class="tag">AWS</span>
+          <span class="tag">Render</span>
           <span class="tag">Vercel</span>
           <span class="tag">GitHub Actions</span>
         </div>
@@ -881,11 +904,11 @@
     <div class="team-layout reveal">
       <div class="team-card" data-role="FRONT">
         <div class="team-role-pill">Frontend Developer</div>
-        <div class="team-name">Member One</div>
+        <div class="team-name">Sucharita Kumar</div>
         <div class="team-title">Interface Architect</div>
         <p class="team-bio">Obsessed with the details that separate good from great. Turns complex requirements into clean, maintainable React codebases with an eye for interaction design and performance.</p>
         <div class="team-skills">
-          <span class="skill-chip">React / Next.js</span>
+          <span class="skill-chip">React</span>
           <span class="skill-chip">TypeScript</span>
           <span class="skill-chip">CSS / Tailwind</span>
           <span class="skill-chip">Figma</span>
@@ -893,26 +916,26 @@
           <span class="skill-chip">Accessibility</span>
         </div>
         <!-- ↓ Replace href with Member One's real LinkedIn URL -->
-        <a href="https://linkedin.com/in/member-one" class="team-linkedin" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/sucharita-kumar-9864692a2/" class="team-linkedin" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           Connect on LinkedIn
         </a>
       </div>
       <div class="team-card" data-role="BACK">
         <div class="team-role-pill">Backend Developer</div>
-        <div class="team-name">Member Two</div>
+        <div class="team-name">Samrat Ghosh</div>
         <div class="team-title">Systems Engineer</div>
         <p class="team-bio">Builds the engine under the hood. Designs APIs that scale, databases that don't break, and infrastructure that stays up — even when things get unpredictable.</p>
         <div class="team-skills">
           <span class="skill-chip">Node.js</span>
-          <span class="skill-chip">Python</span>
+          <span class="skill-chip">Express.js</span>
           <span class="skill-chip">PostgreSQL</span>
           <span class="skill-chip">MongoDB</span>
           <span class="skill-chip">Docker</span>
-          <span class="skill-chip">AWS</span>
+          <!-- <span class="skill-chip">Dep</span> -->
         </div>
         <!-- ↓ Replace href with Member Two's real LinkedIn URL -->
-        <a href="https://linkedin.com/in/member-two" class="team-linkedin" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/samrat-ghosh-53b65636a/" class="team-linkedin" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           Connect on LinkedIn
         </a>
@@ -958,49 +981,49 @@
     <h2 class="section-title reveal">Projects we're<br /><em>proud of</em></h2>
     <div class="work-grid">
       <div class="work-card featured reveal">
-        <div class="work-card-type">SaaS Platform</div>
-        <div class="work-card-title">TaskFlow — Team<br />Project Management</div>
-        <p class="work-card-desc">A collaborative project management suite with real-time updates, role-based permissions, and integrated analytics. Built for a 500-user B2B client from scratch in 10 weeks.</p>
+        <div class="work-card-type">Blockchain Platform</div>
+        <div class="work-card-title">AgroChain<br />Blockchain based Food Supply Chain</div>
+        <p class="work-card-desc">A blockchain based food supply chain using Cryptographic Anchoring mechanism to provide a Web2.5 architecture enhancing the user experience and data integrity.</p>
         <div class="work-card-stack">
-          <span class="tag">Next.js</span>
+          <span class="tag">Cryptographic Ledger</span>
           <span class="tag">Node.js</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Socket.io</span>
-          <span class="tag">AWS</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">React</span>
         </div>
-        <div class="work-arrow">View Case Study →</div>
-        <div class="work-visual">📋</div>
+        <a href="https://agro-trace-iota.vercel.app/" target="_blank" class="work-link">
+    <div class="work-arrow">View Work →</div>
+</a>
+        <div class="work-visual">🌿</div>
       </div>
       <div class="work-card reveal">
-        <div class="work-card-type">E-Commerce</div>
-        <div class="work-card-title">ShopLocal — Marketplace</div>
-        <p class="work-card-desc">Multi-vendor marketplace with Stripe Connect, inventory management, and a mobile-first storefront achieving 98 Lighthouse score.</p>
+        <div class="work-card-type">AI Integrated Platform</div>
+        <div class="work-card-title">AI Driven Code Auditor for Cloud Platforms</div>
+        <p class="work-card-desc">AI based Code Optimizer for Cloud Services to reduce the computational cost to their cloud service providers.</p>
         <div class="work-card-stack">
           <span class="tag">React</span>
           <span class="tag">Express</span>
           <span class="tag">MongoDB</span>
-          <span class="tag">Stripe</span>
+          <span class="tag">LLM Integration</span>
         </div>
-        <div class="work-arrow">View Case Study →</div>
       </div>
       <div class="work-card reveal">
-        <div class="work-card-type">Healthcare</div>
-        <div class="work-card-title">MedBook — Patient Portal</div>
-        <p class="work-card-desc">Appointment booking, secure medical records, and telehealth features for a regional clinic network. HIPAA-conscious architecture with end-to-end encryption.</p>
+        <div class="work-card-type">Disaster Management</div>
+        <div class="work-card-title">GLOF Early Warning System</div>
+        <p class="work-card-desc">A GLOF Early Warning System for providing early detection by accessing abnormal changes in weather with live data via APIs. </p>
         <div class="work-card-stack">
-          <span class="tag">Next.js</span>
-          <span class="tag">Python</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Docker</span>
+          <span class="tag">React</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">Node.js</span>
         </div>
-        <div class="work-arrow">View Case Study →</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
+<!-- <section id="pricing">
   <div class="container">
     <div class="section-label reveal">Investment</div>
     <h2 class="section-title reveal">Transparent <em>pricing</em></h2>
@@ -1050,83 +1073,126 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- CONTACT -->
+<!-- CONTACT -->
 <section id="contact">
-  <div class="container">
-    <div class="contact-layout">
-      <div>
-        <div class="section-label reveal">Get In Touch</div>
-        <div class="contact-tagline reveal">
-          Let's build<br />something<br /><em>great.</em>
+  <div style="max-width:var(--max);margin:0 auto">
+    <div class="section-label reveal" style="padding:0 40px;padding-top:120px">Get In Touch</div>
+    <h2 class="section-title reveal" style="padding:0 40px">Build your<br /><em>project brief.</em></h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)">
+
+      <!-- ── LEFT: Questions ── -->
+      <div id="bbLeft" style="background:var(--surface);padding:48px 40px;display:flex;flex-direction:column">
+
+        <div style="display:flex;gap:6px;margin-bottom:40px" id="bbProgress">
+          <div style="height:2px;flex:1;background:rgba(200,241,53,.5);transition:background .4s" id="dot0"></div>
+          <div style="height:2px;flex:1;background:var(--border);transition:background .4s" id="dot1"></div>
+          <div style="height:2px;flex:1;background:var(--border);transition:background .4s" id="dot2"></div>
+          <div style="height:2px;flex:1;background:var(--border);transition:background .4s" id="dot3"></div>
+          <div style="height:2px;flex:1;background:var(--border);transition:background .4s" id="dot4"></div>
         </div>
-        <p class="reveal" style="color:var(--muted);font-size:13px;line-height:1.9;max-width:360px;">
-          We take on a limited number of projects each quarter to ensure quality. Reach out early — if it's a fit, we'll schedule a free discovery call within 24 hours.
-        </p>
-        <div class="contact-info reveal">
-          <a href="mailto:hello@sssoftwaresolutions.dev" class="contact-item">
-            <div class="contact-item-icon">✉</div>
-            hello@sssoftwaresolutions.dev
+
+        <!-- Step 0 -->
+        <div class="bb-step active" id="step0">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">01 / 05</span>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:8px">What are you building?</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="bb-opt" onclick="bbSelect(0,'opt','A SaaS web application',this)">A SaaS web application</button>
+            <button class="bb-opt" onclick="bbSelect(0,'opt','A landing page or marketing site',this)">A landing page or marketing site</button>
+            <button class="bb-opt" onclick="bbSelect(0,'opt','An internal dashboard / tool',this)">An internal dashboard / tool</button>
+            <button class="bb-opt" onclick="bbSelect(0,'opt','An e-commerce store',this)">An e-commerce store</button>
+            <button class="bb-opt" onclick="bbSelect(0,'opt','Something else',this)">Something else</button>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="bb-nav-btn primary" onclick="bbNext(0)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="bb-step" id="step1">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">02 / 05</span>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:8px">Which service do you need most?</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="bb-opt" onclick="bbSelect(1,'svc','Frontend development',this)">Frontend development</button>
+            <button class="bb-opt" onclick="bbSelect(1,'svc','Backend &amp; API engineering',this)">Backend &amp; API engineering</button>
+            <button class="bb-opt" onclick="bbSelect(1,'svc','Full-stack — the whole thing',this)">Full-stack — the whole thing</button>
+            <button class="bb-opt" onclick="bbSelect(1,'svc','Performance / optimization audit',this)">Performance / optimization audit</button>
+            <button class="bb-opt" onclick="bbSelect(1,'svc','Cloud deployment &amp; DevOps',this)">Cloud deployment &amp; DevOps</button>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="bb-nav-btn ghost" onclick="bbBack(1)">← Back</button>
+            <button class="bb-nav-btn primary" onclick="bbNext(1)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bb-step" id="step2">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">03 / 05</span>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:8px">What's your timeline?</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="bb-opt" onclick="bbSelect(2,'time','ASAP — under 2 weeks',this)">ASAP — under 2 weeks</button>
+            <button class="bb-opt" onclick="bbSelect(2,'time','1 month',this)">1 month</button>
+            <button class="bb-opt" onclick="bbSelect(2,'time','2 – 3 months',this)">2 – 3 months</button>
+            <button class="bb-opt" onclick="bbSelect(2,'time','Flexible / ongoing',this)">Flexible / ongoing</button>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="bb-nav-btn ghost" onclick="bbBack(2)">← Back</button>
+            <button class="bb-nav-btn primary" onclick="bbNext(2)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bb-step" id="step3">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">04 / 05</span>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:8px">What's your budget range?</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="bb-opt" onclick="bbSelect(3,'budget','Under ₹10,000',this)">Under ₹10,000</button>
+            <button class="bb-opt" onclick="bbSelect(3,'budget','₹10,000 – ₹30,000',this)">₹10,000 – ₹30,000</button>
+            <button class="bb-opt" onclick="bbSelect(3,'budget','₹30,000 – ₹75,000',this)">₹30,000 – ₹75,000</button>
+            <button class="bb-opt" onclick="bbSelect(3,'budget','₹75,000+',this)">₹75,000+</button>
+            <button class="bb-opt" onclick="bbSelect(3,'budget','Open to discuss',this)">Open to discuss</button>
+          </div>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="bb-nav-btn ghost" onclick="bbBack(3)">← Back</button>
+            <button class="bb-nav-btn primary" onclick="bbNext(3)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bb-step" id="step4">
+          <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">05 / 05</span>
+          <div style="font-family:var(--font-head);font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:8px">Anything else we should know?</div>
+          <input id="bbName" placeholder="Your name" style="background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:13px;padding:14px 16px;outline:none;width:100%;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'" />
+          <textarea id="bbDetails" placeholder="Key features, tech requirements, existing codebase, or anything that helps us understand the scope…" style="background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:13px;padding:14px 16px;outline:none;width:100%;min-height:100px;resize:vertical;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="bb-nav-btn ghost" onclick="bbBack(4)">← Back</button>
+            <button class="bb-nav-btn primary" onclick="bbGenerate()">Generate Brief →</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT: Output ── -->
+      <div style="background:var(--bg);padding:48px 40px;display:flex;flex-direction:column">
+        <div style="font-family:var(--font-head);font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:10px">
+          <span style="display:block;width:16px;height:1px;background:var(--muted)"></span>Your brief
+        </div>
+        <div id="bbOutput" style="flex:1;background:var(--surface);border:1px solid var(--border);padding:28px;font-size:13px;line-height:2;color:var(--muted);font-family:var(--font-body);min-height:280px;white-space:pre-wrap;word-break:break-word">
+<em style="font-size:12px">Answer the questions on the left and your project brief will appear here — ready to copy and send.</em>
+        </div>
+        <div id="bbCopyRow" style="display:none;gap:10px;margin-top:16px;align-items:center;flex-wrap:wrap">
+          <button onclick="bbCopy()" style="padding:12px 24px;font-family:var(--font-head);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;background:var(--accent);color:#0a0a0a;border:none;transition:background .2s" onmouseover="this.style.background='#d9ff45'" onmouseout="this.style.background='var(--accent)'" id="bbCopyBtn">Copy Brief</button>
+          <a id="bbWaBtn" href="#" target="_blank" rel="noopener" style="padding:12px 20px;font-family:var(--font-head);font-weight:800;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid #25d366;color:#25d366;background:transparent;transition:all .2s;text-decoration:none;display:flex;align-items:center;gap:8px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.523 5.855L0 24l6.335-1.501A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.017-1.376l-.36-.214-3.728.883.917-3.638-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+            Send via WhatsApp
           </a>
-          <a href="https://wa.me/1234567890" class="contact-item">
-            <div class="contact-item-icon">✆</div>
-            +1 (234) 567-890
-          </a>
-          <a href="https://github.com/sssoftwaresolutions" class="contact-item" target="_blank" rel="noopener">
-            <div class="contact-item-icon">⌥</div>
-            github.com/sssoftwaresolutions
-          </a>
-          <a href="https://linkedin.com/company/sssoftwaresolutions" class="contact-item" target="_blank" rel="noopener">
-            <div class="contact-item-icon">in</div>
-            linkedin.com/company/sssoftwaresolutions
-          </a>
+          <button onclick="bbRestart()" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;font-family:var(--font-body);padding:0;transition:color .2s;margin-left:auto" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">↺ Start over</button>
         </div>
       </div>
-      <div class="reveal">
-        <form class="contact-form" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="jane@company.com" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="service">Service Needed</label>
-            <select id="service" name="service">
-              <option value="">Select a service...</option>
-              <option>Frontend Development</option>
-              <option>Backend Engineering</option>
-              <option>Full-Stack Product</option>
-              <option>API Design & Integration</option>
-              <option>Performance Optimization</option>
-              <option>DevOps & Deployment</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="budget">Budget Range</label>
-            <select id="budget" name="budget">
-              <option value="">Select budget...</option>
-              <option>Under $1,500</option>
-              <option>$1,500 – $5,000</option>
-              <option>$5,000 – $15,000</option>
-              <option>$15,000+</option>
-              <option>Let's discuss</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Tell Us About Your Project</label>
-            <textarea id="message" name="message" placeholder="Briefly describe what you're building, your timeline, and any specific requirements..." required></textarea>
-          </div>
-          <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
-          <p id="formMsg" style="display:none;color:var(--accent);font-size:12px;margin-top:8px;"></p>
-        </form>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1143,26 +1209,26 @@
       <a href="#services">Frontend Dev</a>
       <a href="#services">Backend Engineering</a>
       <a href="#services">Full-Stack</a>
-      <a href="#services">DevOps</a>
+      <a href="#services">Deployment</a>
     </div>
     <div class="footer-links-col">
       <h4>Company</h4>
       <a href="#team">Team</a>
       <a href="#work">Portfolio</a>
       <a href="#process">Process</a>
-      <a href="#pricing">Pricing</a>
+      <!-- <a href="#pricing">Pricing</a> -->
     </div>
     <div class="footer-links-col">
       <h4>Connect</h4>
-      <a href="mailto:hello@sssoftwaresolutions.dev">Email</a>
-      <a href="https://github.com/sssoftwaresolutions" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/company/sssoftwaresolutions" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://twitter.com/sssoftsolutions" target="_blank" rel="noopener">Twitter</a>
+      <a href="mailto:hello@sssoftwaresolutions26@gmail.com">Email</a>
+      <!-- <a href="https://github.com/sssoftwaresolutions" target="_blank" rel="noopener">GitHub</a> -->
+      <!-- <a href="https://linkedin.com/company/sssoftwaresolutions" target="_blank" rel="noopener">LinkedIn</a> -->
+      <!-- <a href="https://twitter.com/sssoftsolutions" target="_blank" rel="noopener">Twitter</a> -->
     </div>
   </div>
   <div class="footer-bottom" style="max-width:var(--max);margin:0 auto;width:100%;">
-    <span>© 2025 SS Software Solutions. All rights reserved.</span>
-    <span>Crafted with precision · West Bengal, India</span>
+    <span>© 2026 SS Software Solutions. All rights reserved.</span>
+    <span>Kolkata · West Bengal, India</span>
   </div>
 </footer>
 
@@ -1248,7 +1314,7 @@
   //  5. Replace the three placeholder strings below:
   // ─────────────────────────────────────────────────────────────
   const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← replace
-  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace
+  const EMAILJS_SERVICE_ID  = 'service_pi1pqg9';   // ← replace
   const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
 
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -1302,6 +1368,109 @@
       msg.textContent = 'Something went wrong. Please email us directly at hello@sssoftwaresolutions.dev';
     }
   }
+
+  // ── BRIEF BUILDER ──
+const bbState = { opt: null, svc: null, time: null, budget: null };
+const bbKeys = ['opt','svc','time','budget'];
+
+function bbSelect(step, key, val, el) {
+  bbState[key] = val;
+  el.closest('div').querySelectorAll('.bb-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  bbUpdateLive();
+}
+
+function bbProgress(cur) {
+  for (let i = 0; i < 5; i++) {
+    const d = document.getElementById('dot' + i);
+    d.style.background = i < cur ? 'var(--accent)' : i === cur ? 'rgba(200,241,53,.5)' : 'var(--border)';
+  }
+}
+
+function bbNext(cur) {
+  const key = bbKeys[cur];
+  if (key && !bbState[key]) return;
+  document.getElementById('step' + cur).classList.remove('active');
+  document.getElementById('step' + (cur + 1)).classList.add('active');
+  bbProgress(cur + 1);
+}
+
+function bbBack(cur) {
+  document.getElementById('step' + cur).classList.remove('active');
+  document.getElementById('step' + (cur - 1)).classList.add('active');
+  bbProgress(cur - 1);
+}
+
+function bbUpdateLive() {
+  const o = document.getElementById('bbOutput');
+  const filled = bbKeys.filter(k => bbState[k]);
+  if (!filled.length) return;
+  const labels = { opt: 'Project type', svc: 'Service needed', time: 'Timeline', budget: 'Budget' };
+  let text = '── Project Brief ─────────────────\n\n';
+  bbKeys.forEach(k => {
+    text += (labels[k] + ':').padEnd(16) + (bbState[k] || '…') + '\n';
+  });
+  o.textContent = text;
+}
+
+function bbGenerate() {
+  if (!bbState.opt || !bbState.svc || !bbState.time || !bbState.budget) return;
+  const name = document.getElementById('bbName').value.trim() || 'A potential client';
+  const details = document.getElementById('bbDetails').value.trim() || 'No additional details provided.';
+  const brief =
+`── Project Brief ─────────────────
+
+From:          ${name}
+Project type:  ${bbState.opt}
+Service:       ${bbState.svc}
+Timeline:      ${bbState.time}
+Budget:        ${bbState.budget}
+
+Details:
+${details}
+
+──────────────────────────────────
+Sent via SS Software Solutions brief builder.`;
+
+  const o = document.getElementById('bbOutput');
+  o.textContent = '';
+  document.getElementById('step4').classList.remove('active');
+  bbProgress(5);
+  window._bbBrief = brief;
+
+  let i = 0;
+  (function type() {
+    if (i < brief.length) { o.textContent += brief[i++]; setTimeout(type, 7); }
+    else {
+      const row = document.getElementById('bbCopyRow');
+      row.style.display = 'flex';
+      const waText = encodeURIComponent(`Hi SS Software Solutions!\n\n${brief}`);
+      document.getElementById('bbWaBtn').href = `https://wa.me/916289253323?text=${waText}`;
+    }
+  })();
+}
+
+function bbCopy() {
+  if (!window._bbBrief) return;
+  navigator.clipboard.writeText(window._bbBrief).then(() => {
+    const btn = document.getElementById('bbCopyBtn');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.textContent = 'Copy Brief'; }, 2400);
+  });
+}
+
+function bbRestart() {
+  Object.keys(bbState).forEach(k => bbState[k] = null);
+  for (let i = 1; i <= 4; i++) document.getElementById('step' + i).classList.remove('active');
+  document.getElementById('step0').classList.add('active');
+  document.querySelectorAll('.bb-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById('bbName').value = '';
+  document.getElementById('bbDetails').value = '';
+  document.getElementById('bbOutput').innerHTML = '<em style="font-size:12px">Answer the questions on the left and your project brief will appear here — ready to copy and send.</em>';
+  document.getElementById('bbCopyRow').style.display = 'none';
+  bbProgress(0);
+  window._bbBrief = null;
+}
 </script>
 </body>
 </html>
